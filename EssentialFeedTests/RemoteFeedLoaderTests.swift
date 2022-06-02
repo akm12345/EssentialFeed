@@ -56,16 +56,19 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     // Remove singleton, use subclass
     private class HttpClientSpy: HTTPClient {
-        var requestedURLs = [URL]()
-        //var error: Error?
-        var completions = [(Error) -> Void]()
+        var requestedURLs: [URL] {
+            return messages.map { $0.url }
+        }
+        
+        private var messages = [(url: URL, completion: (Error) -> Void)]()
+        
         func get(from url: URL, completion: @escaping (Error) -> Void) {
-            completions.append(completion)
-            requestedURLs.append(url)
+            messages.append((url, completion))
         }
         
         func complete(with error: Error, at index: Int = 0){
-            completions[index](error)
+            //completions[index](error)
+            messages[index].completion(error)
         }
     }
 }
