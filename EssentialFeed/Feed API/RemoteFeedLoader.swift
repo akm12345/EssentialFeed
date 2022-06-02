@@ -24,7 +24,7 @@ public final class RemoteFeedLoader {
     }
     
     // default closure also passed to not break existing functions
-    public func load(completion: @escaping (Error) -> Void = {_ in }) {
+    public func load(completion: @escaping (Error) -> Void) {
         //HTTPClient.shared.requestedUrl = URL(string: "url.com")
         client.get(from: url) { error in
             completion(.connectivity)
