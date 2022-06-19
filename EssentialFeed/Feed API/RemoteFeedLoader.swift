@@ -19,9 +19,15 @@ public protocol HTTPClient {
 public final class RemoteFeedLoader {
     private let url: URL
     private let client: HTTPClient
+    
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
+    }
+    
+    public enum Result: Equatable {
+        case success([FeedItem])
+        case failure(Error)
     }
     
     public init(url: URL, client: HTTPClient) {
@@ -30,14 +36,14 @@ public final class RemoteFeedLoader {
     }
     
     // default closure also passed to not break existing functions
-    public func load(completion: @escaping (Error) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         //HTTPClient.shared.requestedUrl = URL(string: "url.com")
         client.get(from: url) { result in
             switch result {
-            case .failure:
-                completion(.connectivity)
             case .success:
-                completion(.invalidData)
+                completion(.failure(.invalidData))
+            case .failure:
+                completion(.failure(.connectivity))
             }
         }
     }
