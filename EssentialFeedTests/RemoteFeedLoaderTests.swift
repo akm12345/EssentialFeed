@@ -133,8 +133,8 @@ class RemoteFeedLoaderTests: XCTestCase {
         return (item, json)
     }
     
-    private func makeItemsJSON(_ items: [[String: Any]]) -> Data{
-        let itemsJSON = ["items": [items]]
+    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
+        let itemsJSON = ["items": items]
         return try! JSONSerialization.data(withJSONObject: itemsJSON)
     }
     
