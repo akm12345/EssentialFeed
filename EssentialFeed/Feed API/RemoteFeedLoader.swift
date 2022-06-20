@@ -29,7 +29,8 @@ public final class RemoteFeedLoader {
     // default closure also passed to not break existing functions
     public func load(completion: @escaping (Result) -> Void) {
         //HTTPClient.shared.requestedUrl = URL(string: "url.com")
-        client.get(from: url) { result in
+        client.get(from: url) { [weak self] result in
+            guard self != nil else { return }
             switch result {
             case let .success(data, response):
                 completion(FeedItemsMapper.map(data, from: response))
