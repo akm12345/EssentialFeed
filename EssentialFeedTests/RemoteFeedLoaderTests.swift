@@ -104,10 +104,21 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
     
     // MARK :- Helpers
-    private func makeSUT(url: URL = URL(string: "test.com")!) -> (sut: RemoteFeedLoader, client: HttpClientSpy){
+    private func makeSUT(url: URL = URL(string: "test.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteFeedLoader, client: HttpClientSpy){
         let client = HttpClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
+        
+        // this is invoked everytime test finished. There is common method as wekll Teardown.
+        // Weakly referencing above sut. (Else it will never be nil)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been dealocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     private func expect(_ sut: RemoteFeedLoader, toCompleteWIth result: RemoteFeedLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
