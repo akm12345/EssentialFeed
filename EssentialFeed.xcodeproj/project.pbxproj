@@ -96,8 +96,8 @@
 		5A28F2F428449D14009E34D1 /* EssentialFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				5AC88B562860832700979473 /* Feed API */,
 				5A28F2F528449D14009E34D1 /* EssentialFeedTests.swift */,
-				5A28F3072844A7B9009E34D1 /* RemoteFeedLoaderTests.swift */,
 			);
 			path = EssentialFeedTests;
 			sourceTree = "<group>";
@@ -115,6 +115,14 @@
 				5AC3988A2847F00A00D05495 /* RemoteFeedLoader.swift */,
 				5AC88B522860659F00979473 /* HTTPClient.swift */,
 				5AC88B542860662D00979473 /* FeedItemsMapper.swift */,
+			);
+			path = "Feed API";
+			sourceTree = "<group>";
+		};
+		5AC88B562860832700979473 /* Feed API */ = {
+			isa = PBXGroup;
+			children = (
+				5A28F3072844A7B9009E34D1 /* RemoteFeedLoaderTests.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
