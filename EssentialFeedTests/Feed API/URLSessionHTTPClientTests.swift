@@ -74,8 +74,16 @@ class URLSessionHTTPClientTests: XCTestCase {
     // MARK:- HELPERS
     
     // factory method (in case we add more dependencies to this client we wont break existing tests that don't depend on these dependencies)
-    private func makeSUT() -> URLSessionHTTPClient {
-        return URLSessionHTTPClient()
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> URLSessionHTTPClient {
+        let sut = URLSessionHTTPClient()
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return sut
+    }
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been dealocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     // urlprotocol is a class that inherits from NSObject
