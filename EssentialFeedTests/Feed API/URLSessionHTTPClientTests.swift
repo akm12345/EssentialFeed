@@ -85,7 +85,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     // MARK:- HELPERS
     
     // factory method (in case we add more dependencies to this client we wont break existing tests that don't depend on these dependencies)
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> URLSessionHTTPClient {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
