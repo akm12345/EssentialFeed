@@ -54,12 +54,12 @@ class EssentialFeedAPIEndToEndTests: XCTestCase {
         return UUID(uuidString: [
             "3DGHR6HW-34FH-45FH-RHU7-4JFURBWJ3KFI8",
             "3DGHR6HW-34FH-45FH-RHU7-4JFUR8KJ3KFI3",
-            "3DGHR6HW-34FH-45FH-RHU7-4JFUU8WJ3EFI8",
+            "3DGHR6HW-34FH-45FH-RHU7-4JFUU8GJ3EFI8",
             "3DGHR6HW-34FH-45FH-RHU7-4JJIR8WJ3KFI8",
             "3DGHR6HW-34FH-45FH-RHU7-4JYHR8WJ3KFI8",
             "3DGHR6HW-34FH-45FH-RHU7-4JFUEFWJ3KFI3",
             "3DGHR6HW-34FH-45FH-RHU7-4JFUR8TJ3EFI8",
-            "3DGHR6HW-34FH-45FH-RHU7-4JFUR8GJ3KFI8"][index])!
+            "3DGHR6HW-34FH-45FH-RHU7-4JFUR8GJ3KERI8"][index])!
     }
     
     private func description(at index: Int) -> String? {
